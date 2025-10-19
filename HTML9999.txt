@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- Global Styles ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #0d0221, #050013 70%);
+      color: #e0e0e0;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: #00fff7;
+      text-decoration: none;
+    }
+
+    /* ---------- Navigation ---------- */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(20, 0, 40, 0.9);
+      backdrop-filter: blur(8px);
+      padding: 12px 0;
+      z-index: 1000;
+      border-bottom: 2px solid #ff00ff;
+      box-shadow: 0 0 20px #ff00ff66;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: #00fff7;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #ff00ff;
+      text-shadow: 0 0 10px #ff00ff;
+    }
+
+    /* ---------- Home Section ---------- */
+    #home {
+      height: 100vh;
+ background: linear-gradient(to right, rgba(255, 0, 255, 0.3), rgba(0, 255, 247, 0.3)),
+url('https://images.unsplash.com/photo-1707388863824-ef70a83ec52c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470');
+ background-size: cover;
+ background-position: center;
+ color: #fff;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ text-align: center;
+ text-shadow: 0 0 15px #00fff7;
+ padding: 0 20px;
+    }
+
+    #home h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #ff00ff;
+      text-shadow: 0 0 20px #ff00ff;
+      animation: glow 2s infinite alternate;
+    }
+
+    #home p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      color: #00fff7;
+    }
+
+    /* ---------- Section Layout ---------- */
+    section {
+      padding: 90px 25px 60px;
+      max-width: 1000px;
+      margin: 0 auto 60px;
+      background: rgba(20, 0, 40, 0.8);
+      border: 1px solid #ff00ff55;
+      border-radius: 20px;
+      box-shadow: 0 0 30px #00fff733;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #ff00ff;
+      text-shadow: 0 0 15px #ff00ff;
+    }
+
+    section h3 {
+      color: #00fff7;
+      margin-top: 15px;
+    }
+
+    section p, section ul {
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    /* ---------- Cards ---------- */
+    #resume ul li,
+    #education ul li,
+    #labs div,
+    #projects div {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #00fff755;
+      padding: 15px 20px;
+      border-radius: 12px;
+      margin: 15px 0;
+      transition: 0.3s ease;
+      box-shadow: 0 0 10px #00fff722;
+    }
+
+    #resume ul li:hover,
+    #education ul li:hover,
+    #labs div:hover,
+    #projects div:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px #ff00ff66;
+    }
+
+    /* ---------- Labs & Projects ---------- */
+    #projects div { border-left: 5px solid #00fff7; }
+    #labs div { border-left: 4px solid #ff00ff; }
+
+    /* ---------- Contact Section (Updated) ---------- */
+    #contact {
+      text-align: center;
+      color: #00fff7;
+      position: relative;
+    }
+
+    #contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 500px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #ff00ff55;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 0 25px #00fff733;
+    }
+
+    #contact input,
+    #contact textarea {
+      padding: 14px;
+      border: 1px solid #00fff7;
+      background: #050013;
+      color: #fff;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: 0.3s ease;
+    }
+
+    #contact input:focus,
+    #contact textarea:focus {
+      border-color: #ff00ff;
+      box-shadow: 0 0 15px #ff00ff;
+      outline: none;
+    }
+
+    #contact button {
+      padding: 14px;
+      background: linear-gradient(90deg, #ff00ff, #00fff7);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px #ff00ff66;
+    }
+
+    #contact button:hover {
+      background: linear-gradient(90deg, #00fff7, #ff00ff);
+      transform: translateY(-3px);
+      box-shadow: 0 0 25px #00fff7cc;
+    }
+
+    #formMessage {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #00fff7;
+      text-shadow: 0 0 10px #00fff7;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    #formMessage.show {
+      opacity: 1;
+      animation: neonPulse 1.5s infinite alternate;
+    }
+
+    @keyframes neonPulse {
+      from { text-shadow: 0 0 10px #00fff7; }
+      to { text-shadow: 0 0 25px #ff00ff; }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff00ff; }
+      to { text-shadow: 0 0 25px #00fff7; }
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 768px) {
+      #home h1 { font-size: 2.2rem; }
+      #home p { font-size: 1rem; }
+      nav ul { flex-direction: column; gap: 10px; }
+      section { padding: 70px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#labs">Lab Activities</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home -->
+  <section id="home">
+    <h1>Welcome to My Portfolio</h1>
+    <p>Hi, I’m Honey Rose Biscayno — an aspiring developer exploring futuristic tech and creative coding. Dive into my neon world of code and design!</p>
+  </section>
+
+  <!-- Resume -->
+  <section id="resume">
+    <h2>Resume</h2>
+    <p><strong>Email:</strong> honeyrosebiscayno9@email.com</p>
+    <p><strong>LinkedIn:</strong> <a href="#">YourLinkedIn</a></p>
+    <p><strong>GitHub:</strong> <a href="#">YourGitHub</a></p>
+    <h3>Skills</h3>
+    <ul>
+      <li>Front-End Development (HTML, CSS, JavaScript)</li>
+      <li>UI/UX Design</li>
+      <li>Responsive Web Design</li>
+      <li>Version Control (Git & GitHub)</li>
+    </ul>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <h2>Education</h2>
+    <ul>
+      <li><strong>Diploma in Information Technology</strong> - Davao Del Sur State College 2025</li>
+    </ul>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <p><strong>Intern - Cyber Systems Inc.</strong> (July–August 2025)</p>
+    <p>Assisted in developing futuristic dashboard interfaces and implementing responsive layouts.</p>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div>
+      <h3>Neon Portfolio</h3>
+      <p>A cyberpunk-themed portfolio showcasing my work and creative code.</p>
+      <p><strong>Tech Used:</strong> HTML, CSS, JS</p>
+    </div>
+    <div>
+      <h3>HoloTodo</h3>
+      <p>A holographic-themed to-do app that stores your daily missions.</p>
+      <p><strong>Tech Used:</strong> JavaScript, HTML, CSS</p>
+    </div>
+  </section>
+
+  <!-- Laboratory Activities -->
+  <section id="labs">
+    <h2>Laboratory Activities</h2>
+    <div>
+      <h3>Lab 1 - HTML Basics</h3>
+      <p> <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Introduction l Honey Rose</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #e3f2fd); /* Light gradient background matching portfolio theme */
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Fixed Header with Back Button */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #00bcd4, #25a5d7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #009bb0, #00bcd4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            color: #00bcd4;
+            margin: 0;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 120px auto 40px; /* Space for fixed header */
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .container.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 20px;
+            border: 4px solid #00bcd4;
+            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.2);
+            transition: transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out 0.5s;
+        }
+
+        img.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            text-align: center;
+            color: #00bcd4;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out 0.8s;
+        }
+
+        h1.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        p {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #555;
+            font-size: 1.1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out 1s;
+        }
+
+        p.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            color: #00bcd4;
+            margin: 25px 0 15px;
+            font-size: 1.5rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        h2.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out 1.2s;
+        }
+
+        .skills.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill {
+            background: linear-gradient(135deg, #00bcd4, #25a5d7);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+        }
+
+        .quote {
+            font-style: italic;
+            margin: 20px 0;
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out 1.4s;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #00bcd4;
+            border-radius: 5px;
+        }
+
+        .quote.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Contact Links */
+        .contact-links {
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out 1.6s;
+        }
+
+        .contact-links.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        a {
+            color: #00bcd4;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #009bb0;
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+            }
+
+            .container {
+                margin: 100px auto 20px;
+                padding: 20px;
+            }
+
+            img {
+                width: 120px;
+                height: 120px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+
+            .skills {
+                gap: 8px;
+            }
+
+            .skill {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            a {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Header with Back Button (UPDATED: Now scrolls to #actiivities section) -->
+    <header>
+        <h1 class="page-title">Personal Introduction</h1>
+        <a href="index.html#portfolio" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Activities</a>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <img src=" https://uploads.onecompiler.io/43vpc23vn/43vpc27bd/1752459680725.jpg" -->
+
+        <h1>Honey Rose A. Biscayno</h1>
+        <p>DIT, 3rd Year</p>
+        <p>I am Honey Rose Biscayno, a student passionate about technology and design. I enjoy learning new programming languages and creating innovative solutions. I hope to contribute to the tech industry after graduation.</p>
+        <p>After graduation, I aim to work as a software developer in a dynamic tech company, focusing on web development and contributing to open-source projects.</p>
+
+        <h2>Skills</h2>
+        <div class="skills">
+            <span class="skill">HTML</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">SQL</span>
+        </div>
+
+        <p class="quote">"Don't ever be afraid to show off your true colors."</p>
+
+        <h2>Contact Links</h2>
+        <div class="contact-links">
+            <a href="https://www.facebook.com/Honey Rose A. /Biscayno" target="_blank">Facebook</a> |
+            <a href="mailto:honeyrosebiscayno9@gmail.com">Email</a>
+        </div>
+    </div>
+
+    <script>
+        // Reveal animation on scroll/load (similar to your main portfolio)
+        function reveal() {
+            const reveals = document.querySelectorAll('.container, img, h1, p, h2, .skills, .quote, .contact-links');
+            const windowHeight = window.innerHeight;
+
+            reveals.forEach((el, index) => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        }
+
+        // Trigger on load and scroll
+        window.addEventListener('load', reveal);
+        window.addEventListener('scroll', reveal);
+    </script>
+</body>
+</html>.</p>
+    </div>
+    <div>
+      <h3>Lab 2 - CSS Styling</h3>
+      <p> <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activity 2: HTML/CSS Website Assignment | Aivie Joy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f9;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Fixed Header with Back Button */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      background: linear-gradient(135deg, #00bcd4, #25a5d7);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-btn:hover {
+      background: linear-gradient(135deg, #009bb0, #00bcd4);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+    }
+
+    header h2 {
+      margin: 0;
+      color: #00bcd4;
+      font-size: 1.8rem;
+    }
+
+    /* Nav (Updated colors and responsive) */
+    nav {
+      background: linear-gradient(135deg, #00bcd4, #25a5d7);
+      padding: 15px;
+      text-align: center;
+      margin-top: 100px; /* Space for fixed header */
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* Main Container (Responsive Flex) */
+    .container {
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+
+    .container.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    aside {
+      width: 25%;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+
+    aside.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    main {
+      flex: 1;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+
+    main.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Profile Line */
+    .profile-line {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .profile-line img {
+      max-width: 100px;
+      border-radius: 50%;
+      margin-right: 15px;
+      border: 3px solid #00bcd4;
+      box-shadow: 0 4px 10px rgba(0, 188, 212, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .profile-line img:hover {
+      transform: scale(1.05);
+    }
+
+    .profile-text h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      color: #00bcd4;
+    }
+
+    .profile-text h2 {
+      font-size: 1rem;
+      margin: 5px 0 0 0;
+      color: #666;
+    }
+
+    /* Table (Enhanced with hover) */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+
+    table.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    caption {
+      caption-side: top;
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      text-align: left;
+      color: #00bcd4;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th {
+      background: linear-gradient(135deg, #00bcd4, #25a5d7);
+      color: white;
+      padding: 12px;
+      text-align: left;
+    }
+
+    td {
+      padding: 10px;
+      transition: background 0.3s ease;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: rgba(0, 188, 212, 0.05);
+    }
+
+    /* Video and Login Layout (Responsive) */
+    .media-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+
+    .media-section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .media-section video {
+      width: 100%;
+      max-width: 250px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .media-section video:hover {
+      transform: scale(1.02);
+    }
+
+    /* Login Box (Smaller and styled) */
+    .login-box {
+      border: 1px solid #ddd;
+      padding: 20px;
+      width: 100%;
+      max-width: 220px;
+      border-radius: 12px;
+      background-color: #fdfdfd;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .login-box:hover {
+      box-shadow: 0 8px 25px rgba(0, 188, 212, 0.15);
+    }
+
+    .login-box h3 {
+      margin: 0 0 15px 0;
+      text-align: center;
+      color: #00bcd4;
+      font-size: 1.1rem;
+    }
+
+    .login-box label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: border 0.3s ease;
+    }
+
+    .login-box input:focus {
+      border-color: #00bcd4;
+      outline: none;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 10px;
+      background: linear-gradient(135deg, #00bcd4, #25a5d7);
+      border: none;
+      color: white;
+      font-weight: 500;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .login-box button:hover {
+      background: linear-gradient(135deg, #009bb0, #00bcd4);
+      transform: translateY(-2px);
+    }
+
+    /* Footer (Updated colors) */
+    footer {
+      text-align: center;
+      background: linear-gradient(135deg, #00bcd4, #25a5d7);
+      color: white;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    /* Animations (Fade-in for sections) */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+      }
+
+      .container {
+        flex-direction: column;
+        padding: 10px;
+      }
+
+      aside {
+        width: 100%;
+      }
+
+      nav {
+        margin-top: 140px;
+      }
+
+      nav a {
+        display: block;
+        margin: 5px 0;
+      }
+
+      .media-section {
+        flex-direction: column;
+      }
+
+      .media-section video {
+        max-width: 100%;
+      }
+
+      .login-box {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fixed Header with Back Button -->
+  <header>
+    <h2>WELCOME TO MY WEBSITE!!!</h2>
+    <a href="index.html#portfolio" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Activities</a>
+  </header>
+
+  <!-- Nav (Kept as in your code) -->
+  <nav>
+    <a href="act2_page1.html">HTML</a> |
+    <a href="act2_page2.html">CSS</a>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container">
+    <aside>
+      <h1>Sidebar</h1>
+      <p>This is a simple HTML structure</p>
+    </aside>
+
+    <main>
+      <!-- Profile Line -->
+      <div class="profile-line">
+        <img src="https://uploads.onecompiler.io/43vpc23vn/43vpc27bd/1752459680725.jpg" -->
+        <div class="profile-text">
+          <h1>Honey Rose A. Biscayno</h1>
+          <h2>DIT 3A</h2>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <table>
+        <caption>My Team Members</caption>
+        <tr>
+          <th>Name</th>
+          <th>Skills</th>
+          <th>Contact</th>
+        </tr>
+        <tr>
+          <td>Imee Jean</td>
+          <td>HTML</td>
+          <td>@gmail.com</td>
+        </tr>
+        <tr>
+          <td>Lizlie</td>
+          <td>HTML</td>
+          <td>lizliejane31@gmail.com</td>
+        </tr>
+      </table>
+
+      <!-- Video and Login -->
+      <div class="media-section">
+        <video controls src="video.mp4"></video> <!-- Assume video.mp4 is in the same folder -->
+
+        <div class="login-box">
+          <h3>Login</h3>
+          <form action="#" method="post">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter Username" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter Password" required>
+
+            <button type="submit">Login</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Honey Rose A. Biscayno. All rights reserved.</p>
+    <p>Contact: honeyrosebiscayno9@gmail.com | Privacy Policy</p> <!-- Updated contact to match your portfolio -->
+  </footer>
+
+  <script>
+    // Simple reveal animation on scroll (similar to your main portfolio)
+    function reveal() {
+      const reveals = document.querySelectorAll('.container, aside, main, table, .media-section');
+      const windowHeight = window.innerHeight;
+
+      reveals.forEach((el) => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) {
+          el.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', () => {
+      reveal(); // Trigger on load
+    });
+  </script>
+</body>
+</html.</p>
+    </div>
+    <div>
+      <h3>Lab 3 - Flexbox Layout</h3>
+      <p> <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Profile Card | Honey Rose</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f8f9fa, #e3f2fd); /* Light gradient matching portfolio theme */
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* Fixed Header with Back Button */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 15px 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      background: linear-gradient(135deg, #00bcd4, #25a5d7);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-btn:hover {
+      background: linear-gradient(135deg, #009bb0, #00bcd4);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+    }
+
+    .page-title {
+      font-size: 1.5rem;
+      color: #00bcd4;
+      margin: 0;
+    }
+
+    /* Main Content (Centered Card) */
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding-top: 80px; /* Space for fixed header */
+      width: 100%;
+    }
+
+    .card {
+      width: 350px;
+      text-align: center;
+      background: linear-gradient(135deg, #ffffff, #f8f9fa); /* White/light gradient for card */
+      padding: 30px 20px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+      transition: all 0.8s ease-out;
+      border: 1px solid rgba(0, 188, 212, 0.1);
+    }
+
+    .card.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .card img {
+      display: block;
+      margin: 0 auto 15px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #00bcd4;
+      box-shadow: 0 5px 15px rgba(0, 188, 212, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .card img:hover {
+      transform: scale(1.05);
+    }
+
+    .card h1 {
+      color: #00bcd4;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .name {
+      color: #555;
+      margin: 10px 0 20px;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .btn-container {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    #btn-aboutme {
+      background: linear-gradient(135deg, #00bcd4, #25a5d7);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      cursor: pointer;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 188, 212, 0.2);
+    }
+
+    #btn-aboutme:hover {
+      background: linear-gradient(135deg, #009bb0, #00bcd4);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 188, 212, 0.3);
+    }
+
+    #info {
+      margin-top: 20px;
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      border-left: 4px solid #00bcd4;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    #info.show {
+      opacity: 1;
+      max-height: 200px; /* Adjust based on content height */
+    }
+
+    .hide {
+      display: none;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+      }
+
+      main {
+        padding-top: 100px;
+        padding: 20px;
+      }
+
+      .card {
+        width: 90%;
+        max-width: 300px;
+        padding: 20px 15px;
+      }
+
+      .card img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .card h1 {
+        font-size: 1.3rem;
+      }
+
+      #btn-aboutme {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fixed Header with Back Button -->
+  <header>
+    <h1 class="page-title">Activity 3: Interactive Profile Card</h1>
+    <a href="index.html#portfolio" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Activities</a>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="card">
+      <img src="https://uploads.onecompiler.io/43vpc23vn/43vpc27bd/1752459680725.jpg" -->
+
+      <h1>HONEY ROSE A. BISCAYNO</h1>
+
+      <!-- Always visible -->
+      <p class="name">Passionate about clean UI and accessible web experiences.</p>
+
+      <!-- Button (centered) -->
+      <div class="btn-container">
+        <button id="btn-aboutme">ABOUT ME</button>
+      </div>
+
+      <!-- Hidden text -->
+      <div id="info" class="hide">
+        <p>I am a self made programmer, my passion runs through my blood.</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Reveal animation on load (simple fade-in for card)
+    document.addEventListener("DOMContentLoaded", function () {
+      const card = document.querySelector(".card");
+      setTimeout(() => {
+        card.classList.add("active");
+      }, 200);
+    });
+
+    // Toggle functionality (adapted from your original JS)
+    document.addEventListener("DOMContentLoaded", function () {
+      const btnAboutme = document.getElementById("btn-aboutme");
+      const divAboutme = document.getElementById("info");
+
+      btnAboutme.addEventListener("click", function () {
+        if (divAboutme.classList.contains("hide")) {
+          divAboutme.classList.remove("hide");
+          divAboutme.classList.add("show");
+          btnAboutme.textContent = "Show Less";
+        } else {
+          divAboutme.classList.remove("show");
+          divAboutme.classList.add("hide");
+          btnAboutme.textContent = "ABOUT ME";
+        }
+      });
+    });
+  </script>
+</body>
+</html>.</p>
+    </div>
+    <div>
+      <h3>Lab 4 - JS Events</h3>
+      <p><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activity 4: Hover Image Reveal | Honey Rose</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f8f9fa, #e3f2fd); /* Light gradient matching portfolio theme */
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* Fixed Header with Back Button */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 15px 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      background: linear-gradient(135deg, #00bcd4, #25a5d7);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-btn:hover {
+      background: linear-gradient(135deg, #009bb0, #00bcd4);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+    }
+
+    .page-title {
+      font-size: 1.5rem;
+      color: #00bcd4;
+      margin: 0;
+    }
+
+    /* Main Content (Centered Card) */
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding-top: 80px; /* Space for fixed header */
+      width: 100%;
+    }
+
+    .card {
+      width: 350px;
+      text-align: center;
+      background: linear-gradient(135deg, #ffffff, #f8f9fa); /* White/light gradient for card */
+      padding: 30px 20px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+      transition: all 0.8s ease-out;
+      border: 1px solid rgba(0, 188, 212, 0.1);
+      position: relative;
+    }
+
+    .card.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .card img {
+      display: block;
+      margin: 0 auto 20px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #00bcd4;
+      box-shadow: 0 5px 15px rgba(0, 188, 212, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 188, 212, 0.3);
+    }
+
+    /* Bio Text (Hidden by default, shows on image hover) */
+    .bio-text {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.4;
+      margin: 0;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transform: translateY(10px);
+      transition: all 0.4s ease;
+      padding: 0 10px;
+    }
+
+    /* Show bio on image hover */
+    .card:hover .bio-text {
+      opacity: 1;
+      max-height: 100px; /* Adjust based on text height */
+      transform: translateY(0);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+      }
+
+      main {
+        padding-top: 100px;
+        padding: 20px;
+      }
+
+      .card {
+        width: 90%;
+        max-width: 300px;
+        padding: 20px 15px;
+      }
+
+      .card img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .bio-text {
+        font-size: 0.9rem;
+        padding: 0 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fixed Header with Back Button -->
+  <header>
+    <h1 class="page-title">Hover</h1>
+    <a href="index.html#portfolio" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Activities</a>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="card">
+      <img src="https://uploads.onecompiler.io/43vpc23vn/43vpc27bd/1752459680725.jpg" -->
+
+      <!-- Bio Text (Reveals on image hover) -->
+      <p class="bio-text">Passionate about clean UI and accessible web experiences.</p>
+    </div>
+  </main>
+
+  <script>
+    // Reveal animation on load (simple fade-in for card)
+    document.addEventListener("DOMContentLoaded", function () {
+      const card = document.querySelector(".card");
+      setTimeout(() => {
+        card.classList.add("active");
+      }, 200);
+    });
+  </script>
+</body>
+</html> .</p>
+    </div>
+    <div>
+      <h3>Lab 5 - Form Validation</h3>
+      <p> <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activity 5: Dark Mode Profile Card | Honey Rose</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://uploads.onecompiler.io/43vpc23vn/43vpc27bd/1752459680725.jpg">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #f8f9fa, #e3f2fd); /* Light gradient matching portfolio theme */
+      color: #333;
+      transition: background 0.3s ease;
+      overflow-x: hidden;
+    }
+
+    /* Fixed Header with Back Button */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 15px 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      background: linear-gradient(135deg, #00bcd4, #25a5d7);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-btn:hover {
+      background: linear-gradient(135deg, #009bb0, #00bcd4);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+    }
+
+    .page-title {
+      font-size: 1.5rem;
+      color: #00bcd4;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+
+    .container.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid #00bcd4;
+      box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3);
+      margin: 15px 0;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05);
+    }
+
+    h1 {
+      margin: 10px 0;
+      color: #00bcd4;
+      font-size: 1.5rem;
+    }
+
+    p {
+      margin: 5px 0 15px;
+      color: #555;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #00bcd4, #25a5d7);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #009bb0, #00bcd4);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 188, 212, 0.2);
+    }
+
+    .dark-mode {
+      background: #121212;
+      color: white;
+    }
+
+    .dark-mode .container {
+      background: #1e1e1e;
+    }
+
+    .dark-mode p {
+      color: limegreen;
+      font-weight: bold;
+    }
+
+    .dark-mode button {
+      background: #bb86fc;
+    }
+
+    .dark-mode button:hover {
+      background: #9a63d6;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+      }
+
+      body {
+        padding-top: 80px;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 350px;
+        padding: 20px;
+      }
+
+      .profile-img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fixed Header with Back Button -->
+  <header>
+    <h1 class="page-title"> Dark Mode </h1>
+    <a href="index.html#portfolio" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Activities</a>
+  </header>
+
+  <div class="container">
+    <img class="https://uploads.onecompiler.io/43vpc23vn/43vpc27bd/1752459680725.jpg">
+    <h1>Biscayno, Honey Rose A. </h1>
+    <p>3rd Year IT Student</p>
+
+    <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+  </div>
+
+  <script>
+    // Reveal animation on load
+    document.addEventListener("DOMContentLoaded", function () {
+      const container = document.querySelector(".container");
+      setTimeout(() => {
+        container.classList.add("active");
+      }, 200);
+    });
+
+    // Dark mode toggle function (adapted from your original JS)
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      let roleText = document.querySelector(".container p");  // Target the p element
+
+     
+       
+    }
+  </script>
+</body>
+</html>.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section (Enhanced) -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Enter your name" required>
+      <input type="email" id="email" placeholder="Enter your email" required>
+      <textarea id="message" rows="5" placeholder="Type your message..." required></textarea>
+      <button type="submit">SEND MESSAGE </button>
+    </form>
+    <p id="formMessage"></p>
+  </section>
+
+  <script>
+    // Reveal sections and highlight nav
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav ul li a');
+    window.addEventListener('scroll', () => {
+      let scrollPos = window.scrollY + 150;
+      sections.forEach(section => {
+        if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+          section.classList.add('show');
+          navLinks.forEach(link => link.classList.remove('active'));
+          document.querySelector(`nav ul li a[href="#${section.id}"]`).classList.add('active');
+        }
+      });
+    });
+
+    // Contact form effect
+    const form = document.getElementById('contactForm');
+    const msg = document.getElementById('formMessage');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      msg.textContent = " Message sent successfully!";
+      msg.classList.add('show');
+      form.reset();
+      setTimeout(() => msg.classList.remove('show'), 4000);
+    });
+  </script>
+
+</body>
+</html>
+
